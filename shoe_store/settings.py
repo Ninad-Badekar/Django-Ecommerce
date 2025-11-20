@@ -86,7 +86,7 @@ DATABASES = {
         'NAME': 'shoestore',
         'USER': 'root',
         'PASSWORD': 'root',
-        'HOST': 'db',   # docker-compose service name
+        'HOST': 'db',  
         'PORT': '3306',
     }
 }
