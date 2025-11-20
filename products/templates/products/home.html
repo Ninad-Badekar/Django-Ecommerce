@@ -1,8 +1,69 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2 class="mb-4 fw-bold">Latest Shoes</h2>
 
+<!-- <h2 class="mb-4 fw-bold">Latest Shoes</h2> -->
+
+<!-- FILTER BAR -->
+<form method="get" class="row g-3 mb-4">
+
+    <!-- Search -->
+    <div class="col-md-3">
+        <input type="text" name="search" value="{{ request.GET.search }}"
+               class="form-control" placeholder="Search shoes...">
+    </div>
+
+    <!-- Category -->
+    <div class="col-md-2">
+        <select name="category" class="form-select">
+            <option value="">Category</option>
+            {% for c in categories %}
+                <option value="{{ c.id }}" 
+                        {% if request.GET.category == c.id|stringformat:"s" %}selected{% endif %}>
+                    {{ c.name }}
+                </option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <!-- Brand -->
+    <div class="col-md-2">
+        <input type="text" name="brand" value="{{ request.GET.brand }}" 
+               class="form-control" placeholder="Brand">
+    </div>
+
+    <!-- Size -->
+    <div class="col-md-2">
+        <select name="size" class="form-select">
+            <option value="">Size</option>
+            {% for s in sizes %}
+            <option value="{{ s }}" 
+                    {% if request.GET.size == s %}selected{% endif %}>
+                {{ s }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <!-- Sort -->
+    <div class="col-md-2">
+        <select name="sort" class="form-select">
+            <option value="">Sort by</option>
+            <option value="price_low"   {% if request.GET.sort == "price_low" %}selected{% endif %}>Price: Low → High</option>
+            <option value="price_high"  {% if request.GET.sort == "price_high" %}selected{% endif %}>Price: High → Low</option>
+            <option value="newest"      {% if request.GET.sort == "newest" %}selected{% endif %}>Newest</option>
+        </select>
+    </div>
+
+    <div class="col-md-1">
+        <button class="btn btn-dark w-100">Apply</button>
+    </div>
+
+</form>
+<!-- END FILTER BAR -->
+
+
+<!-- PRODUCT GRID -->
 <div class="row g-4">
     {% for product in products %}
     <div class="col-md-3">
@@ -15,6 +76,9 @@
             </div>
         </div>
     </div>
+    {% empty %}
+        <p class="text-muted">No products found.</p>
     {% endfor %}
 </div>
+
 {% endblock %}
