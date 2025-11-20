@@ -1,0 +1,13 @@
+asgiref==3.8.1
+backports.zoneinfo==0.2.1
+certifi==2025.11.12
+charset-normalizer==3.4.4
+django==4.2.26
+django-widget-tweaks==1.5.0
+idna==3.11
+pillow==10.4.0
+requests==2.32.4
+sqlparse==0.5.3
+stripe==14.0.0
+typing-extensions==4.13.2
+urllib3==2.2.3

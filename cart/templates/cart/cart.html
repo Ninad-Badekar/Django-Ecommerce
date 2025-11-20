@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3 class="fw-bold">Your Cart</h3>
+<hr>
+
+{% if cart_items %}
+<table class="table table-bordered shadow-sm">
+    <thead class="table-dark">
+        <tr>
+            <th>Shoe</th>
+            <th>Price</th>
+            <th>Qty</th>
+            <th>Total</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for item in cart_items %}
+        <tr>
+            <td>{{ item.product.name }}</td>
+            <td>₹{{ item.product.price }}</td>
+
+            <td>
+                <a href="{% url 'decrease_quantity' item.id %}" class="btn btn-sm btn-danger">-</a>
+                
+                <span class="mx-2">{{ item.quantity }}</span>
+                
+                <a href="{% url 'increase_quantity' item.id %}" class="btn btn-sm btn-success">+</a>
+            </td>
+
+            <td>₹{{ item.total_price }}</td>
+
+            <td>
+                <a href="{% url 'remove_from_cart' item.id %}" class="btn btn-sm btn-outline-dark">Remove</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{% url 'enter_address' %}" class="btn btn-success btn-lg">Place Order</a>
+
+
+
+{% else %}
+<p class="text-muted">Your cart is empty.</p>
+{% endif %}
+
+{% endblock %}
