@@ -24,8 +24,8 @@ SECRET_KEY = 'django-insecure-g2k#^y@-31gxxm0c3q*8-jiv)ps7&rc1+nh_*98lxfty$+!iew
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+ALLOWED_HOSTS = ["shoestore.localhost.in", "localhost", "127.0.0.1"]
 
-ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -82,8 +82,12 @@ WSGI_APPLICATION = 'shoe_store.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'shoestore',
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'HOST': 'db',   # docker-compose service name
+        'PORT': '3306',
     }
 }
 
@@ -121,10 +125,11 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    BASE_DIR / "static",
+    BASE_DIR / "static",   
 ]
 
-STATIC_ROOT = BASE_DIR / "staticfiles"   
+STATIC_ROOT = BASE_DIR / "staticfiles" 
+
 
 
 # Default primary key field type

@@ -7,4 +7,4 @@ def catego():
     for c in categories:
         Category.objects.get_or_create(name=c)
 
-print("Categories created!")
+catego()

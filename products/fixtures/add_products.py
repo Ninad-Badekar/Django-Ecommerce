@@ -61,3 +61,4 @@ def run():
             stock=p["stock"]
         )
     print("Products added successfully!")
+run()
