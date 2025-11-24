@@ -3,11 +3,28 @@
 
 <div class="form-container">
 
-<form method="POST" class="register-form">
+<form method="POST" class="register-form" novalidate>
     {% csrf_token %}
 
+    <!-- Display Django messages -->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} mt-2">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <!-- Non-field errors (e.g. password mismatch) -->
+    {% if form.non_field_errors %}
+        <div class="alert alert-danger">
+            {{ form.non_field_errors }}
+        </div>
+    {% endif %}
+
+    <!-- Username -->
     <div class="form-group mb-3">
-        <label>Username</label>
+        <label for="id_username">Username</label>
         {{ form.username }}
         {% if form.username.errors %}
             <div class="invalid-feedback d-block">
@@ -16,8 +33,9 @@
         {% endif %}
     </div>
 
+    <!-- Email -->
     <div class="form-group mb-3">
-        <label>Email</label>
+        <label for="id_email">Email</label>
         {{ form.email }}
         {% if form.email.errors %}
             <div class="invalid-feedback d-block">
@@ -26,8 +44,9 @@
         {% endif %}
     </div>
 
+    <!-- Password -->
     <div class="form-group mb-3">
-        <label>Password</label>
+        <label for="id_password1">Password</label>
         {{ form.password1 }}
         {% if form.password1.errors %}
             <div class="invalid-feedback d-block">
@@ -36,8 +55,9 @@
         {% endif %}
     </div>
 
+    <!-- Confirm Password -->
     <div class="form-group mb-3">
-        <label>Confirm Password</label>
+        <label for="id_password2">Confirm Password</label>
         {{ form.password2 }}
         {% if form.password2.errors %}
             <div class="invalid-feedback d-block">

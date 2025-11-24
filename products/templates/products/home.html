@@ -2,18 +2,15 @@
 
 {% block content %}
 
-<!-- <h2 class="mb-4 fw-bold">Latest Shoes</h2> -->
-
-<!-- FILTER BAR -->
 <form method="get" class="row g-3 mb-4">
 
-    <!-- Search -->
+
     <div class="col-md-3">
         <input type="text" name="search" value="{{ request.GET.search }}"
                class="form-control" placeholder="Search shoes...">
     </div>
 
-    <!-- Category -->
+
     <div class="col-md-2">
         <select name="category" class="form-select">
             <option value="">Category</option>
@@ -26,7 +23,7 @@
         </select>
     </div>
 
-    <!-- Brand -->
+
     <div class="col-md-2">
         <input type="text" name="brand" value="{{ request.GET.brand }}" 
                class="form-control" placeholder="Brand">
@@ -60,10 +57,7 @@
     </div>
 
 </form>
-<!-- END FILTER BAR -->
 
-
-<!-- PRODUCT GRID -->
 <div class="row g-4">
     {% for product in products %}
     <div class="col-md-3">

@@ -28,8 +28,8 @@ def start_payment(request):
         payment_method_types=["card"],
         line_items=line_items,
         mode="payment",
-        success_url="http://127.0.0.1:8000/orders/payment-success/?session_id={CHECKOUT_SESSION_ID}",
-        cancel_url="http://127.0.0.1:8000/cart/",
+        success_url="http://shoestore.localhost.in/orders/payment-success/?session_id={CHECKOUT_SESSION_ID}",
+        cancel_url="http://shoestore.localhost.in/cart/",
     )
 
     return redirect(session.url)
